@@ -12,16 +12,16 @@ void changeConsoleColor(unsigned char color) {
 }
 
 int montyHall_simulation(int switch_doors) {
-    int car_door = rand() % 3; 
+    int goat_door = rand() % 3; 
     int chosen_door = rand() % 3; 
 
     int revealed_door;
     do {
         revealed_door = rand() % 3;
-    } while (revealed_door == car_door || revealed_door == chosen_door);
+    } while (revealed_door == goat_door || revealed_door == chosen_door);
 
     if (switch_doors) {
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 3; i++) {
             if (i != chosen_door && i != revealed_door) {
                 chosen_door = i;
                 break;
@@ -29,13 +29,13 @@ int montyHall_simulation(int switch_doors) {
         }
     }
 
-    return chosen_door == car_door;
+    return chosen_door == goat_door;
 }
 
 double get_percentage(int trials) {
     int wins = 0;
 
-    for (int i = 0; i < trials; ++i) {
+    for (int i = 0; i < trials; i++) {
         wins += montyHall_simulation(1);
     }
 
@@ -53,7 +53,7 @@ void play_game() {
     printf("\n세 개의 문 중 하나를 선택하세요 (1, 2, 3): ");
     scanf_s("%d", &chosen_door);
 
-    // 사회자가 염소가 없는 문을 열어줌
+    // 출제자가 염소가 없는 문을 열어줌
     do {
         revealed_door = rand() % 3 + 1;
     } while (revealed_door == goat_door || revealed_door == chosen_door);
@@ -93,14 +93,13 @@ void play_game() {
 int main() {
     srand(time(NULL)); 
     system("cls");
-    SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE), CONSOLE_FULLSCREEN_MODE, 0);
     changeConsoleColor(para);
     printf(" ##  ###  #######  ##  ###  #######  ##  ###           ###  ##   ######   ##       ##               #######  ######   #######  ######    ##      #######  ##  ### \n");
     printf(" #######  ##   ##  ### ###    ###    ##  ###           ###  ##   ##  ##   ##       ##               ##   ##  ##  ##   ##   ##  ##  ##    ##      ##       ####### \n");
     printf(" #######  ##   ##  #######    ###    ##  ###           ###  ##   ##  ##   ##       ##               ##   ##  ##  ##   ##   ##  ##  ##    ##      ##       ####### \n");
-    printf(" ### ###  ##  ###  ## ####    ###    #######           #######  #######  ###      ###               #######  #######  ##  ###  #######  ###      #######  ### ### \n");
-    printf(" ##  ###  ##  ###  ##  ###    ###      ###             ###  ##  ###  ##  ###      ###               ###      ### ###  ##  ###  ##  ###  ###      ###      ##  ### \n");
-    printf(" ##  ###  ##  ###  ##  ###    ###      ###             ###  ##  ###  ##  ###      ###               ###      ### ###  ##  ###  ##  ###  ###      ###      ##  ### \n");
+    printf(" ### ###  ##   ##  ## ####    ###    #######           #######  #######  ###      ###               #######  #######  ##  ###  #######  ###      #######  ### ### \n");
+    printf(" ##  ###  ##   ##  ##  ###    ###      ###             ###  ##  ###  ##  ###      ###               ###      ### ###  ##  ###  ##  ###  ###      ###      ##  ### \n");
+    printf(" ##  ###  ##   ##  ##  ###    ###      ###             ###  ##  ###  ##  ###      ###               ###      ### ###  ##  ###  ##  ###  ###      ###      ##  ### \n");
     printf(" ##  ###  #######  ##  ###    ###      ###             ###  ##  ###  ##  ######   ######            ###      ### ###  #######  #######  ######   #######  ##  ### \n");
     
     changeConsoleColor(white);
